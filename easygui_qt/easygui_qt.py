@@ -15,14 +15,9 @@ else:
     import configparser
     unicode = str
 
-try:
-    from PyQt4 import QtGui, QtCore
-    qt_widgets = QtGui
-    _qt4 = True
-except ImportError:
-    from PyQt5 import QtGui, QtCore
-    from PyQt5 import QtWidgets as qt_widgets
-    _qt4 = False
+from PyQt6 import QtGui, QtCore
+from PyQt6 import QtWidgets as qt_widgets
+_qt4 = False
 
 
 try:
@@ -183,7 +178,7 @@ def show_message(message="Message",
     box.setText(message)
     box.show()
     box.raise_()
-    box.exec_()
+    box.exec()
     app.quit()
 
 
@@ -361,8 +356,8 @@ def set_language(locale):
 
 def get_common_input_flags():
     '''avoiding copying same flags in all functions'''
-    flags = QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowTitleHint
-    flags |= QtCore.Qt.WindowStaysOnTopHint
+    flags = QtCore.Qt.WindowType.WindowSystemMenuHint | QtCore.Qt.WindowType.WindowTitleHint
+    flags |= QtCore.Qt.WindowType.WindowStaysOnTopHint
     return flags
 
 class VisibleInputDialog(qt_widgets.QInputDialog):
@@ -724,14 +719,13 @@ def get_directory_name(title="Get directory"):
        working directory.
     '''
     app = SimpleApp()
-    options = qt_widgets.QFileDialog.Options()
     # Without the following option (i.e. using native dialogs),
     # calling this function twice in a row made Python crash.
-    options |= qt_widgets.QFileDialog.DontUseNativeDialog
-    options |= qt_widgets.QFileDialog.DontResolveSymlinks
-    options |= qt_widgets.QFileDialog.ShowDirsOnly
+    options = qt_widgets.QFileDialog.Option.DontUseNativeDialog
+    options |= qt_widgets.QFileDialog.Option.DontResolveSymlinks
+    options |= qt_widgets.QFileDialog.Option.ShowDirsOnly
     directory = qt_widgets.QFileDialog.getExistingDirectory(None,
-                                            title, os.getcwd(), options)
+                                            title, os.getcwd(), options=options)
     app.quit()
     if sys.version_info < (3,):
         return unicode(directory)
@@ -759,10 +753,9 @@ def get_file_names(title="Get existing file names"):
                                                "All Files (*.*)")
         files = [unicode(item) for item in files]
     else:
-        options = qt_widgets.QFileDialog.Options()
-        options |= qt_widgets.QFileDialog.DontUseNativeDialog
+        options = qt_widgets.QFileDialog.Option.DontUseNativeDialog
         files = qt_widgets.QFileDialog.getOpenFileNames(None, title, os.getcwd(),
-                                               "All Files (*.*)", options)
+                                               "All Files (*.*)", options=options)
     app.quit()
     return files
 

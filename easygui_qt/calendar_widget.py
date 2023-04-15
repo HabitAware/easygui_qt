@@ -1,10 +1,6 @@
 
-try:
-    from PyQt4 import QtGui, QtCore
-    qt_widgets = QtGui
-except ImportError:
-    from PyQt5 import QtGui, QtCore
-    from PyQt5 import QtWidgets as qt_widgets
+from PyQt6 import QtGui, QtCore
+from PyQt6 import QtWidgets as qt_widgets
 
 
 class CalendarWidget(qt_widgets.QWidget):

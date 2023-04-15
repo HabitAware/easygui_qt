@@ -1,10 +1,6 @@
 
-try:
-    from PyQt4 import QtGui, QtCore
-    qt_widgets = QtGui
-except ImportError:
-    from PyQt5 import QtCore, QtGui
-    from PyQt5 import QtWidgets as qt_widgets
+from PyQt6 import QtCore, QtGui
+from PyQt6 import QtWidgets as qt_widgets
 
 class WizardCreator(qt_widgets.QWizard):
     def __init__(self, title="Title", pages=[]):

@@ -1,9 +1,5 @@
-try:
-    from PyQt4 import QtGui
-    qt_widgets = QtGui
-except ImportError:
-    from PyQt5 import QtGui
-    from PyQt5 import QtWidgets as qt_widgets
+from PyQt6 import QtGui
+from PyQt6 import QtWidgets as qt_widgets
 
 
 def get_string(prompt="What is your name? ", title="Title",
@@ -14,7 +10,7 @@ def get_string(prompt="What is your name? ", title="Title",
         app = qt_widgets.QApplication([])
     app.dialog = qt_widgets.QInputDialog()
     text, ok = app.dialog.getText(None, title, prompt,
-                                  qt_widgets.QLineEdit.Normal,
+                                  qt_widgets.QLineEdit.EchoMode.Normal,
                                   default_response)
     app.quit()
     if ok:

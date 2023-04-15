@@ -10,12 +10,8 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../"))
 import easygui_qt
 
-try:
-    from PyQt4 import QtGui, QtCore
-    qt_widgets = QtGui
-except ImportError:
-    from PyQt5 import QtCore, QtGui
-    from PyQt5 import QtWidgets as qt_widgets
+from PyQt6 import QtCore, QtGui
+from PyQt6 import QtWidgets as qt_widgets
 
 def launch(name, *args):
     """Executes a script designed specifically for this launcher.
