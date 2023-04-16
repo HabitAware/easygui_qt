@@ -39,10 +39,10 @@ def launch(name, *args):
 class Dialog(qt_widgets.QDialog):
 
     def __init__(self, parent=None):
-        flags = QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowTitleHint
+        flags = QtCore.Qt.WindowType.WindowSystemMenuHint | QtCore.Qt.WindowType.WindowTitleHint
         super(Dialog, self).__init__(parent, flags=flags)
 
-        frameStyle = qt_widgets.QFrame.Sunken | qt_widgets.QFrame.Panel
+        frameStyle = qt_widgets.QFrame.Shadow.Sunken | qt_widgets.QFrame.Shape.Panel
         layout = qt_widgets.QGridLayout()
         layout.setColumnStretch(1, 1)
         layout.setColumnMinimumWidth(1, 250)
@@ -220,7 +220,7 @@ class Dialog(qt_widgets.QDialog):
 def main():
     _ = qt_widgets.QApplication([])
     dialog = Dialog()
-    dialog.exec_()
+    dialog.exec()
 
 if __name__ == '__main__':
     main()

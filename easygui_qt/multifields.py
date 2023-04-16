@@ -12,8 +12,8 @@ class MultipleFieldsDialog(qt_widgets.QDialog):
        being the key and the entry being the corresponding value"""
     def __init__(self, labels=None, title="Demo", masks=None, parent=None):
         super(MultipleFieldsDialog, self).__init__(None,
-                         QtCore.Qt.WindowSystemMenuHint |
-                         QtCore.Qt.WindowTitleHint)
+                         QtCore.Qt.WindowType.WindowSystemMenuHint |
+                         QtCore.Qt.WindowType.WindowTitleHint)
 
         if parent is None:
             raise Exception("Parent must be a valid object")
